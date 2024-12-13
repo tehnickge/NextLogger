@@ -1,3 +1,9 @@
+import NavigateComponent from "@/components/navigate/Navigate";
+
 export default function Home() {
-  return <div>main page:</div>;
+  return (
+    <div className="">
+      <NavigateComponent></NavigateComponent>
+    </div>
+  );
 }
