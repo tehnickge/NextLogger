@@ -18,8 +18,8 @@ const UserChatRoomSchema = new Schema<IUserChatRoom>({
   joinedAt: { type: Date, default: Date.now },
 });
 
-const UserChatRoom =
+const UserChatRoomModel =
   mongoose.models.UserChatRoom ||
   mongoose.model<IUserChatRoom>("UserChatRoom", UserChatRoomSchema);
 
-export default UserChatRoom;
+export default UserChatRoomModel;

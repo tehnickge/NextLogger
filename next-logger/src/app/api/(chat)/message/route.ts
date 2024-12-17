@@ -1,6 +1,7 @@
+import MessageModel from "@/models/Message";
+import Message from "@/models/Message";
 import Test from "@/models/Test";
 import connectToDatabase from "@/utils/mongo";
-import prisma from "@/utils/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import * as yup from "yup";
 
@@ -29,7 +30,7 @@ const messageSchema = yup.object().shape({
 const getMessages = async (req: NextRequest) => {
   try {
     await connectToDatabase();
-    const messages = Test.find({});
+    const messages = Message.find({});
     return NextResponse.json({ messages }, { status: 200 });
   } catch (err) {
     return NextResponse.json(err, { status: 500 });
@@ -45,11 +46,17 @@ const PostMessage = async (req: NextRequest) => {
       abortEarly: false,
     });
 
-    console.log(message.content, "red");
-    const newMsg = new Test({
-      userId: message.content,
+    const newMsg = await new MessageModel({
+      messageId: message.messageId,
+      content: body.content,
+      createdAt: message.createdAt,
+      senderId: message.senderId,
+      sender: message.sender,
+      chatRoomId: message.chatRoomId,
+      chatRoom: message.chatRoom,
     });
 
+    await newMsg.save();
     return NextResponse.json(newMsg, { status: 200 });
   } catch (err) {
     if (err instanceof yup.ValidationError) {

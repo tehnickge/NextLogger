@@ -12,6 +12,6 @@ const ChatRoomSchema = new Schema<IChatRoom>({
   createdAt: { type: Date, default: Date.now },
 });
 
-const ChatRoom = mongoose.models.ChatRoom || mongoose.model<IChatRoom>('ChatRoom', ChatRoomSchema);
+const ChatRoomModel = mongoose.models.ChatRoom || mongoose.model<IChatRoom>('ChatRoom', ChatRoomSchema);
 
-export default ChatRoom;
+export default ChatRoomModel;

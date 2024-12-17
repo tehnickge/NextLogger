@@ -20,6 +20,6 @@ const MessageSchema = new Schema<IMessage>({
   chatRoom: { type: String, required: true },
 });
 
-const Message = mongoose.models.Message || mongoose.model<IMessage>('Message', MessageSchema);
+const MessageModel = mongoose.models.Message || mongoose.model<IMessage>('Message', MessageSchema);
 
-export default Message;
+export default MessageModel;

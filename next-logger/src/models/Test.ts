@@ -8,6 +8,6 @@ const TestSchema = new Schema<ITest>({
   userId: { type: String, required: true },
 });
 
-const Test = mongoose.models.Test || mongoose.model<ITest>('Test', TestSchema);
+const TestModel = mongoose.models.Test || mongoose.model<ITest>('Test', TestSchema);
 
-export default Test;
+export default TestModel;
