@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  preset: "ts-jest",
+  testEnvironment: "node",
+  transform: {
+    "^.+\\.ts$": "ts-jest",
+  },
 };
 
 export default nextConfig;
