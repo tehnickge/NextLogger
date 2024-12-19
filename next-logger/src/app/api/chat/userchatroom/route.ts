@@ -3,7 +3,7 @@ import connectToDatabase from "@/utils/mongo";
 import { NextRequest, NextResponse } from "next/server";
 import * as yup from "yup";
 
-type IUserChatRoom = {
+export type IUserChatRoom = {
   userChatRoomId: string;
   userId: string;
   chatRoomId: string;

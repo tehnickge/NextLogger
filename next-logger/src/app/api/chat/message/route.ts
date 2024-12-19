@@ -5,7 +5,7 @@ import connectToDatabase from "@/utils/mongo";
 import { NextRequest, NextResponse } from "next/server";
 import * as yup from "yup";
 
-export interface Message {
+export interface IMessage {
   id?: string;
   messageId: string;
   content: string;
@@ -30,8 +30,8 @@ const messageSchema = yup.object().shape({
 const getMessages = async (req: NextRequest) => {
   try {
     await connectToDatabase();
-    const messages = Message.find({});
-    return NextResponse.json({ messages }, { status: 200 });
+    const messages = await MessageModel.find({});
+    return NextResponse.json(messages, { status: 200 });
   } catch (err) {
     return NextResponse.json(err, { status: 500 });
   }
@@ -39,10 +39,10 @@ const getMessages = async (req: NextRequest) => {
 
 const PostMessage = async (req: NextRequest) => {
   try {
-    const body: Message = await req.json();
+    const body: IMessage = await req.json();
     await connectToDatabase();
 
-    const message: Message = await messageSchema.validate(body, {
+    const message: IMessage = await messageSchema.validate(body, {
       abortEarly: false,
     });
 

@@ -3,18 +3,22 @@ import connectToDatabase from "@/utils/mongo";
 import { NextRequest, NextResponse } from "next/server";
 import * as yup from "yup";
 
-type IUser = {
-  chatRoomId: string;
-  name: string;
+export type IUser = {
+  id?: string;
+  userId: string;
+  username: string;
+  email: string;
   createdAt: Date;
+  updatedAt: Date;
 };
 
 const userSchema = yup.object().shape({
-    userId: yup.string().required(),
-    username: yup.string().required(),
-    email: yup.string().required(),
-    createdAt: yup.date().required(),
-    updatedAt: yup.date().required()
+  id: yup.string().optional(),
+  userId: yup.string().required(),
+  username: yup.string().required(),
+  email: yup.string().required(),
+  createdAt: yup.date().required(),
+  updatedAt: yup.date().required(),
 });
 
 const getUsers = async () => {
