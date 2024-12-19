@@ -7,15 +7,19 @@ const arrlinks = [
   },
   {
     href: "chats",
-    title: "chats",
+    title: "chatroom",
   },
   {
-    href: "",
-    title: "",
+    href: "error",
+    title: "error",
   },
   {
-    href: "",
-    title: "",
+    href: "message",
+    title: "message",
+  },
+  {
+    href: "userchatrooms",
+    title: "userchatrooms",
   },
 ];
 
@@ -23,16 +27,11 @@ const NavigateComponent = () => {
   return (
     <div className="flex justify-center items-center bg-indigo-950 py-4">
       <ul className="flex justify-center items-center space-x-4">
-        {arrlinks.map(
-          (
-            link,
-            index ////
-          ) => (
-            <li key={index}>
-              <Link href={link.href}>{link.title}</Link>
-            </li>
-          )
-        )}
+        {arrlinks.map((link, index) => (
+          <li key={index}>
+            <Link href={link.href}>{link.title}</Link>
+          </li>
+        ))}
       </ul>
     </div>
   );

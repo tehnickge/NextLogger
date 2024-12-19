@@ -1,0 +1,30 @@
+"use client";
+import { IUser } from "@/app/api/chat/user/route";
+import LogTable from "@/components/logtable/LogTable";
+import { getRequest } from "@/utils/axios";
+import { useEffect, useState } from "react";
+
+const UsersPage = () => {
+  const fetchUsers = async () => {
+    try {
+      const usersData = await getRequest<IUser[]>("/chat/user");
+      setUsers(usersData);
+    } catch (error) {
+      console.error("Error fetching users", error);
+    }
+  };
+  const [users, setUsers] = useState<IUser[]>([]);
+  console.log(users);
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  return (
+    <LogTable
+      dataRow={users}
+      columns={users && users.length > 0 ? Object.keys(users[0]) : []}
+    ></LogTable>
+  );
+};
+
+export default UsersPage;

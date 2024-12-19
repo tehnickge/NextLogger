@@ -1,7 +1,43 @@
+# version: '3.1'
+
+# services:
+#   mongo:
+#     image: mongo
+#     restart: always
+#     ports:
+#       - 27017:27017
+#     environment:
+#       MONGO_INITDB_ROOT_USERNAME: root
+#       MONGO_INITDB_ROOT_PASSWORD: root
+#       MONGO_INITDB_DATABASE: mydatabase
+#     command:
+#       - --replSet
+#       - rs0  
+#     volumes:
+#       - ./keyfile:/etc/mongo/keyfile
+#     user: "mongodb"  
+#     networks:
+#       - mynetwork  
+
+#   mongo-express:
+#     image: mongo-express
+#     restart: always
+#     ports:
+#       - 8081:8081
+#     environment:
+#       ME_CONFIG_MONGODB_ADMINUSERNAME: root
+#       ME_CONFIG_MONGODB_ADMINPASSWORD: root
+#       ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/admin?replicaSet=rs0
+#       ME_CONFIG_BASICAUTH: false
+#     networks:
+#       - mynetwork  
+
+# networks:
+#   mynetwork:  
+#     driver: bridge
 version: '3.1'
 
 services:
-
   mongo:
     image: mongo
     restart: always
@@ -10,6 +46,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
+    user: "mongodb"  
 
   mongo-express:
     image: mongo-express
@@ -20,4 +57,5 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: root
       ME_CONFIG_MONGODB_URL: mongodb://root:root@mongo:27017/
-      ME_CONFIG_BASICAUTH: false
+
+
