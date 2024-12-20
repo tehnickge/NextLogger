@@ -7,9 +7,9 @@ export type IUserChatRoom = {
   userChatRoomId: string;
   userId: string;
   chatRoomId: string;
-  userID: string;
   chatRoom: string;
   joinedAt: Date;
+  event: string;
 };
 
 const userChatRoomSchema = yup.object().shape({
@@ -19,6 +19,7 @@ const userChatRoomSchema = yup.object().shape({
   userID: yup.string().required(),
   chatRoom: yup.string().required(),
   joinedAt: yup.date().required(),
+  event: yup.string().optional(),
 });
 
 const getUserInChatRoom = async () => {
@@ -43,8 +44,8 @@ const postUserInChatRoom = async (req: NextRequest) => {
       userId: userInChat.userId,
       chatRoomId: userInChat.chatRoomId,
       chatRoom: userInChat.chatRoom,
-      userID: userInChat.userId,
       joinedAt: userInChat.joinedAt,
+      event: userInChat.event,
     });
     await newUserInChatRoom.save();
     return NextResponse.json(newUserInChatRoom, { status: 200 });

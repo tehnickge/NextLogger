@@ -7,12 +7,14 @@ export type IChatRoom = {
   chatRoomId: string;
   name: string;
   createdAt: Date;
+  event: string;
 };
 
 const chatroomSchema = yup.object().shape({
   chatRoomId: yup.string().required(),
   name: yup.string().required(),
   createdAt: yup.date().required(),
+  event: yup.string().optional(),
 });
 
 const getChatRooms = async () => {
@@ -34,6 +36,7 @@ const postChatRoom = async (req: NextRequest) => {
       chatRoomId: chatRoom.chatRoomId,
       name: chatRoom.name,
       createdAt: chatRoom.createdAt,
+      event: chatRoom.event,
     });
     await newChatRoom.save();
     return NextResponse.json(newChatRoom, { status: 200 });
