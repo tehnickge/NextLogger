@@ -93,3 +93,71 @@ ChatLogger API — это проект, предоставляющий инте�
    ```
 - Получить список комнат:
    - GET /api/chat/chatroom
+
+## 🧪 Тестирование
+   
+   ```bash
+   npm test
+   ```
+
+## 📂 Схема данных
+
+1. **ChatRoom**
+   ```TS
+   {
+     chatRoomId: string;
+     name: string;
+     createdAt: Date;
+     event: string;
+   }
+   ```
+2. **Error**
+   ```TS
+   {
+     module: string;
+     event: string;
+     info: string;
+     createdAt: Date;
+   }
+   ```
+3. **Message**
+   ```TS
+   {
+     messageId: string;
+     content: string;
+     createdAt: Date;
+     senderId: string;
+     sender: string;
+     chatRoomId: string;
+     chatRoom: string;
+   }
+   ```
+4. **ServiceAuth**
+   ```TS
+   {
+     serviceName: string;
+     servicePassword: string;
+   }
+   ```
+5. **User**
+   ```TS
+   {
+     userId: string;
+     username: string;
+     email: string;
+     createdAt: Date;
+     updatedAt: Date;
+     event: string;
+   }
+   ```
+6. **UserChatRoom**
+   ```TS
+   {
+     userChatRoomId: string;
+     userId: string;
+     chatRoomId: string;
+     chatRoom: string;
+     joinedAt: Date;
+     event: string;
+   }
+   ```
