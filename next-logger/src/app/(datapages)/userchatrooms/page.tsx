@@ -1,5 +1,5 @@
 "use client";
-import { IUser } from "@/app/api/chat/user/route";
+
 import { IUserChatRoom } from "@/app/api/chat/userchatroom/route";
 import LogTable from "@/components/logtable/LogTable";
 import { getRequest } from "@/utils/axios";
@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 const UsersPage = () => {
   const fetchUsers = async () => {
     try {
-      const usersData = await getRequest<IUserChatRoom[]>("/chat/chatroom");
+      const usersData = await getRequest<IUserChatRoom[]>("/chat/userchatroom");
       setUsers(usersData);
     } catch (error) {
       console.error("Error fetching users", error);

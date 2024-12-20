@@ -10,6 +10,7 @@ export type IUser = {
   email: string;
   createdAt: Date;
   updatedAt: Date;
+  event: string;
 };
 
 const userSchema = yup.object().shape({
@@ -19,6 +20,7 @@ const userSchema = yup.object().shape({
   email: yup.string().required(),
   createdAt: yup.date().required(),
   updatedAt: yup.date().required(),
+  event: yup.string().optional(),
 });
 
 const getUsers = async () => {
