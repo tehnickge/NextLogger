@@ -44,6 +44,7 @@ const postUser = async (req: NextRequest) => {
       email: user.email,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
+      event: user.event,
     });
     await newUser.save();
     return NextResponse.json(newUser, { status: 200 });
